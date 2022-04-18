@@ -60,5 +60,11 @@ public class InvoiceLine {
     public double getTotalLine(){
         return count*price;
     }
+
+    @Override
+    public String toString() {
+        return "InvoiceLine{" + "header=" + header + ", itemName=" + itemName + ", price=" + price + ", count=" + count + '}';
+    }
+
     
 }

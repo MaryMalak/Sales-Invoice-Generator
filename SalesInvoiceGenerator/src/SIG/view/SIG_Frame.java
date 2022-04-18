@@ -6,6 +6,8 @@
 package SIG.view;
 import SIG.controller.ActionListenerBtns;
 import SIG.controller.ActionListenerMenuItems;
+import SIG.model.InvoiceHeader;
+import java.util.ArrayList;
 /**
  *
  * @author mary
@@ -73,26 +75,20 @@ public class SIG_Frame extends javax.swing.JFrame {
 
         jTable_Invoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(jTable_Invoice);
 
         jTable_Items.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane3.setViewportView(jTable_Items);
@@ -295,7 +291,22 @@ public class SIG_Frame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
-    private   ActionListenerBtns listenerBtns= new ActionListenerBtns(this);
+  private   ActionListenerBtns listenerBtns= new ActionListenerBtns(this);
     private  ActionListenerMenuItems listenerMenuItems=new ActionListenerMenuItems(this);
+    private ArrayList<InvoiceHeader> invoicesArr;
+
+    public void setInvoicesArr(ArrayList<InvoiceHeader> invoicesArr) {
+        this.invoicesArr = invoicesArr;
+    }
+    
+    public InvoiceHeader getInvoiceHeaderObject(int code){
+        for(InvoiceHeader InvoiceHeaderObject : invoicesArr){
+            if(InvoiceHeaderObject.getNumber()==code){
+                return InvoiceHeaderObject;
+            }
+        }
+        return null;  
+    }
+    
 
 }

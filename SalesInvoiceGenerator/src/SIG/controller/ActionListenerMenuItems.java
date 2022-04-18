@@ -5,6 +5,7 @@
  */
 package SIG.controller;
 import SIG.model.InvoiceHeader;
+import SIG.model.InvoiceLine;
 import SIG.view.SIG_Frame;
 //import java.awt.List;
 import java.awt.event.ActionEvent;
@@ -50,26 +51,44 @@ public class ActionListenerMenuItems implements ActionListener{
         try{
         int choice= fileChooser.showOpenDialog(frame);
         if (choice==JFileChooser.APPROVE_OPTION) {
-            Path filePath=Paths.get(fileChooser.getSelectedFile().getAbsolutePath());
-           List<String> lines;
-            lines = Files.readAllLines(filePath);
+            Path PathOfHeaderFile=Paths.get(fileChooser.getSelectedFile().getAbsolutePath());
+           List<String> linesOfHeaderFile;
+            linesOfHeaderFile = Files.readAllLines(PathOfHeaderFile);
             ArrayList<InvoiceHeader> Headers = new ArrayList<>();
-            for(String line :lines){
-                String[]elements=line.split(",");
-                String element1=elements[0]; 
-                int code =Integer.parseInt(elements[0]);
-                Date invoiceDate = date.parse(elements[1]);
-                InvoiceHeader header = new InvoiceHeader(code, invoiceDate, elements[2]);
-                    Headers.add(header);      
+            for(String line :linesOfHeaderFile){
+                String[]HeaderElements=line.split(",");
+                int code =Integer.parseInt(HeaderElements[0]);
+                Date invoiceDate = date.parse(HeaderElements[1]);
+                InvoiceHeader invHeader = new InvoiceHeader(code, invoiceDate, HeaderElements[2]);
+                    Headers.add(invHeader);      
+            }
+            frame.setInvoicesArr(Headers);
+            choice= fileChooser.showOpenDialog(frame);
+        if (choice==JFileChooser.APPROVE_OPTION) {
+            Path PathOfLineFile=Paths.get(fileChooser.getSelectedFile().getAbsolutePath());
+           List<String> linesOfLineFile;
+            linesOfLineFile = Files.readAllLines(PathOfLineFile);
+            ArrayList<InvoiceLine> invline = new ArrayList<>();
+            for(String lineOfLineFile :linesOfLineFile){
+                String[]lineElements=lineOfLineFile.split(",");
+                int code =Integer.parseInt(lineElements[0]);
+                double price=Double.parseDouble(lineElements[2]);
+                int count=Integer.parseInt(lineElements[3]);
+                InvoiceHeader inv=frame.getInvoiceHeaderObject(code) ;
+                InvoiceLine line=new InvoiceLine(inv, lineElements[1], price, count);
+                inv.getLines().add(line);
+                
             }
         }
-        }catch(IOException e){
+        }
+        }
+        catch(IOException e){
             JOptionPane.showMessageDialog(frame, e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
         }catch(ParseException e){
             JOptionPane.showMessageDialog(frame, e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
     }
-
+    }
     private void SaveFile() {
     }
     

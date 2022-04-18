@@ -50,7 +50,14 @@ public class InvoiceHeader {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
-
+    
+    public ArrayList<InvoiceLine> getLines() {
+        if (lines==null) {
+            lines=new ArrayList<>();
+        }
+        return lines;
+    }
+    
     public void setLines(ArrayList<InvoiceLine> lines) {
         this.lines = lines;
     }
@@ -62,6 +69,11 @@ public class InvoiceHeader {
         }
         return total;
     
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceHeader{" + "number=" + number + ", date=" + date + ", customerName=" + customerName + '}';
     }
     
     
