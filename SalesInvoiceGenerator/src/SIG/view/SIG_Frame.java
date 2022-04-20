@@ -51,6 +51,8 @@ public class SIG_Frame extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel_InTotal1 = new javax.swing.JLabel();
+        jLabel_InTotal2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuIteamLoadFile = new javax.swing.JMenuItem();
@@ -70,8 +72,9 @@ public class SIG_Frame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(750, 550));
         setSize(new java.awt.Dimension(700, 500));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable_Invoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +86,8 @@ public class SIG_Frame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable_Invoice);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 300, 343));
+
         jTable_Items.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -93,12 +98,15 @@ public class SIG_Frame extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable_Items);
 
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 370, 220));
+
         jButton_Create.setText("Create New Invoice");
         jButton_Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CreateActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         jButton_Delete.setText("Delete Invoice");
         jButton_Delete.addActionListener(new java.awt.event.ActionListener() {
@@ -106,22 +114,39 @@ public class SIG_Frame extends javax.swing.JFrame {
                 jButton_DeleteActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, -1, -1));
 
         jButton_Save.setText("Save");
+        getContentPane().add(jButton_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, -1, -1));
 
         jButton_Cancle.setText("Cancel");
+        getContentPane().add(jButton_Cancle, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, -1, -1));
 
         jLabel_InNumber.setText("Invoice Number");
+        getContentPane().add(jLabel_InNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 88, -1));
 
         jLabel_InDate.setText("Invoice Date");
+        getContentPane().add(jLabel_InDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 88, -1));
 
         jLabel_CustomerName.setText("Customer Name");
+        getContentPane().add(jLabel_CustomerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 88, 20));
 
-        jLabel_InTotal.setText("Invoice Total");
+        jLabel_InTotal.setText("Invoice Items");
+        getContentPane().add(jLabel_InTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 98, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 176, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 196, -1));
 
         jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 48, -1));
 
         jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 44, -1));
+
+        jLabel_InTotal1.setText("Invoice Total");
+        getContentPane().add(jLabel_InTotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 98, -1));
+
+        jLabel_InTotal2.setText("Invoices Table");
+        getContentPane().add(jLabel_InTotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 98, 30));
 
         jMenu1.setText("File");
 
@@ -141,80 +166,6 @@ public class SIG_Frame extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_Create)
-                        .addGap(62, 62, 62)
-                        .addComponent(jButton_Delete))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_InNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_InDate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_CustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_InTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Save)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jButton_Cancle)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel_InNumber))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel_InDate)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel_CustomerName)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel_InTotal)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton_Delete)
-                        .addComponent(jButton_Create))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton_Save)
-                        .addComponent(jButton_Cancle)))
-                .addContainerGap())
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,6 +228,8 @@ public class SIG_Frame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_InDate;
     private javax.swing.JLabel jLabel_InNumber;
     private javax.swing.JLabel jLabel_InTotal;
+    private javax.swing.JLabel jLabel_InTotal1;
+    private javax.swing.JLabel jLabel_InTotal2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuIteamLoadFile;
