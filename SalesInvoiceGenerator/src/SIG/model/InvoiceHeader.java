@@ -63,11 +63,16 @@ public class InvoiceHeader {
     }
     
     public double getTotalInvoice(){
-        double total=0;
-        for (InvoiceLine line : lines) {
-            total+=line.getTotalLine();
+        double total=0.0;
+        for (int i = 0; i < getLines().size(); i++) {
+            total += lines.get(i).getTotalLine();
         }
+        
         return total;
+//        for (InvoiceLine line : lines) {
+//            total+=line.getTotalLine();
+//        }
+//        return total;
     
     }
 

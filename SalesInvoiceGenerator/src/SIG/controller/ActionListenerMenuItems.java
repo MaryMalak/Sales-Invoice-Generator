@@ -5,6 +5,7 @@
  */
 package SIG.controller;
 import SIG.model.InvoiceHeader;
+import SIG.model.InvoiceHeaderTable;
 import SIG.model.InvoiceLine;
 import SIG.view.SIG_Frame;
 //import java.awt.List;
@@ -28,7 +29,7 @@ import javax.swing.JOptionPane;
  */
 public class ActionListenerMenuItems implements ActionListener{
     private SIG_Frame frame;
-    private SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+    
 
     public ActionListenerMenuItems(SIG_Frame frame) {
         this.frame = frame;
@@ -58,7 +59,7 @@ public class ActionListenerMenuItems implements ActionListener{
             for(String line :linesOfHeaderFile){
                 String[]HeaderElements=line.split(",");
                 int code =Integer.parseInt(HeaderElements[0]);
-                Date invoiceDate = date.parse(HeaderElements[1]);
+                Date invoiceDate = SIG_Frame.date.parse(HeaderElements[1]);
                 InvoiceHeader invHeader = new InvoiceHeader(code, invoiceDate, HeaderElements[2]);
                     Headers.add(invHeader);      
             }
@@ -80,6 +81,10 @@ public class ActionListenerMenuItems implements ActionListener{
                 
             }
         }
+            InvoiceHeaderTable headerTable1=new InvoiceHeaderTable(Headers);
+            frame.setHeaderTable(headerTable1);
+            frame.getjTable_Invoice().setModel(headerTable1);
+                   
         }
         }
         catch(IOException e){

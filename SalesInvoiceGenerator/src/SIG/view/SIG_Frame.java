@@ -6,13 +6,23 @@
 package SIG.view;
 import SIG.controller.ActionListenerBtns;
 import SIG.controller.ActionListenerMenuItems;
+import SIG.controller.SelectListenerForTable;
 import SIG.model.InvoiceHeader;
+import SIG.model.InvoiceHeaderTable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author mary
  */
-public class SIG_Frame extends javax.swing.JFrame {
+public class SIG_Frame extends javax.swing.JFrame  {
     /**
      * Creates new form SIG_Frame
      */
@@ -47,12 +57,12 @@ public class SIG_Frame extends javax.swing.JFrame {
         jLabel_InDate = new javax.swing.JLabel();
         jLabel_CustomerName = new javax.swing.JLabel();
         jLabel_InTotal = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel_InTotal1 = new javax.swing.JLabel();
-        jLabel_InTotal2 = new javax.swing.JLabel();
+        jTextField_InvoiceDate = new javax.swing.JTextField();
+        jTextField_CustomerName = new javax.swing.JTextField();
+        jLabel_InvoiceNumber = new javax.swing.JLabel();
+        jLabel_InvoiceTotal = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuIteamLoadFile = new javax.swing.JMenuItem();
@@ -72,21 +82,14 @@ public class SIG_Frame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 550));
-        setSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(800, 550));
+        setSize(new java.awt.Dimension(800, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable_Invoice.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
+        jTable_Invoice.getSelectionModel().addListSelectionListener(selectListenerForTable);
         jScrollPane1.setViewportView(jTable_Invoice);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 300, 343));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 43, 350, 390));
 
         jTable_Items.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,7 +101,7 @@ public class SIG_Frame extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable_Items);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 370, 220));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 350, 250));
 
         jButton_Create.setText("Create New Invoice");
         jButton_Create.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +109,7 @@ public class SIG_Frame extends javax.swing.JFrame {
                 jButton_CreateActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        getContentPane().add(jButton_Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
 
         jButton_Delete.setText("Delete Invoice");
         jButton_Delete.addActionListener(new java.awt.event.ActionListener() {
@@ -114,39 +117,35 @@ public class SIG_Frame extends javax.swing.JFrame {
                 jButton_DeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, -1, -1));
+        getContentPane().add(jButton_Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, -1, -1));
 
         jButton_Save.setText("Save");
-        getContentPane().add(jButton_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, -1, -1));
+        getContentPane().add(jButton_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, -1, -1));
 
         jButton_Cancle.setText("Cancel");
-        getContentPane().add(jButton_Cancle, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, -1, -1));
+        getContentPane().add(jButton_Cancle, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, -1, -1));
 
         jLabel_InNumber.setText("Invoice Number");
-        getContentPane().add(jLabel_InNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 88, -1));
+        getContentPane().add(jLabel_InNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 88, -1));
 
         jLabel_InDate.setText("Invoice Date");
-        getContentPane().add(jLabel_InDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 88, -1));
+        getContentPane().add(jLabel_InDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 88, -1));
 
         jLabel_CustomerName.setText("Customer Name");
-        getContentPane().add(jLabel_CustomerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 88, 20));
+        getContentPane().add(jLabel_CustomerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 88, -1));
 
-        jLabel_InTotal.setText("Invoice Items");
-        getContentPane().add(jLabel_InTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 98, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 176, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 196, -1));
+        jLabel_InTotal.setText("Invoice Total");
+        getContentPane().add(jLabel_InTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 110, -1));
+        getContentPane().add(jTextField_InvoiceDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 176, -1));
+        getContentPane().add(jTextField_CustomerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 196, -1));
+        getContentPane().add(jLabel_InvoiceNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 48, -1));
+        getContentPane().add(jLabel_InvoiceTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 44, -1));
 
-        jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 48, -1));
+        jLabel1.setText("Invoices Table");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 94, 32));
 
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 44, -1));
-
-        jLabel_InTotal1.setText("Invoice Total");
-        getContentPane().add(jLabel_InTotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 98, -1));
-
-        jLabel_InTotal2.setText("Invoices Table");
-        getContentPane().add(jLabel_InTotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 98, 30));
+        jLabel2.setText("Invoices Items");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 94, 32));
 
         jMenu1.setText("File");
 
@@ -222,14 +221,14 @@ public class SIG_Frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Create;
     private javax.swing.JButton jButton_Delete;
     private javax.swing.JButton jButton_Save;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_CustomerName;
     private javax.swing.JLabel jLabel_InDate;
     private javax.swing.JLabel jLabel_InNumber;
     private javax.swing.JLabel jLabel_InTotal;
-    private javax.swing.JLabel jLabel_InTotal1;
-    private javax.swing.JLabel jLabel_InTotal2;
+    private javax.swing.JLabel jLabel_InvoiceNumber;
+    private javax.swing.JLabel jLabel_InvoiceTotal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuIteamLoadFile;
@@ -240,16 +239,23 @@ public class SIG_Frame extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable_Invoice;
     private javax.swing.JTable jTable_Items;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField_CustomerName;
+    private javax.swing.JTextField jTextField_InvoiceDate;
     // End of variables declaration//GEN-END:variables
 
-  private   ActionListenerBtns listenerBtns= new ActionListenerBtns(this);
+    private   ActionListenerBtns listenerBtns= new ActionListenerBtns(this);
     private  ActionListenerMenuItems listenerMenuItems=new ActionListenerMenuItems(this);
     private ArrayList<InvoiceHeader> invoicesArr;
+    private InvoiceHeaderTable headerTable;
+    public static SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+    private SelectListenerForTable selectListenerForTable=new SelectListenerForTable(this);
 
     public void setInvoicesArr(ArrayList<InvoiceHeader> invoicesArr) {
         this.invoicesArr = invoicesArr;
+    }
+
+    public ArrayList<InvoiceHeader> getInvoicesArr() {
+        return invoicesArr;
     }
     
     public InvoiceHeader getInvoiceHeaderObject(int code){
@@ -261,5 +267,41 @@ public class SIG_Frame extends javax.swing.JFrame {
         return null;  
     }
     
+
+    public InvoiceHeaderTable getHeaderTable() {
+        return headerTable;
+    }
+
+    public void setHeaderTable(InvoiceHeaderTable headerTable) {
+        this.headerTable = headerTable;
+    }
+
+    public JTable getjTable_Invoice() {
+        return jTable_Invoice;
+        
+    }
+
+    public JTable getjTable_Items() {
+        return jTable_Items;
+    }
+
+    public JTextField getjTextField_CustomerName() {
+        return jTextField_CustomerName;
+    }
+
+    public JTextField getjTextField_InvoiceDate() {
+        return jTextField_InvoiceDate;
+    }
+
+    public JLabel getjLabel_InvoiceNumber() {
+        return jLabel_InvoiceNumber;
+    }
+
+    public JLabel getjLabel_InvoiceTotal() {
+        return jLabel_InvoiceTotal;
+    }
+    
+  
+     
 
 }

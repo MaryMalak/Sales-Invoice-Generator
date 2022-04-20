@@ -29,19 +29,33 @@ public class ActionListenerBtns implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "Create New Invoice":
-                System.out.println("Create New Invoice");
+                CreateNewInvoice();
                 break;
             case "Delete Invoice":
-                System.out.println("Delete Invoice");
+                DeleteInvoice();
                 break;
             case "Save":
-                System.out.println("save");            
+                Save();           
                 break;
             case "Cancel":
-                System.out.println("cancel");
+                Cancel();
                 break;
         }
        
+    }
+
+    private void CreateNewInvoice() {
+    }
+
+    private void DeleteInvoice() {       
+    }
+
+    private void Save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void Cancel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
