@@ -9,6 +9,8 @@ import SIG.controller.ActionListenerMenuItems;
 import SIG.controller.SelectListenerForTable;
 import SIG.model.InvoiceHeader;
 import SIG.model.InvoiceHeaderTable;
+import SIG.model.InvoiceLine;
+import SIG.model.InvoiceLineTable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -249,6 +251,24 @@ public class SIG_Frame extends javax.swing.JFrame  {
     private InvoiceHeaderTable headerTable;
     public static SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
     private SelectListenerForTable selectListenerForTable=new SelectListenerForTable(this);
+    private ArrayList<InvoiceLine> linesArr;
+    private InvoiceLineTable lineTable;
+
+    public InvoiceLineTable getLineTable() {
+        return lineTable;
+    }
+
+    public void setLineTable(InvoiceLineTable lineTable) {
+        this.lineTable = lineTable;
+    }
+
+    public ArrayList<InvoiceLine> getLinesArr() {
+        return linesArr;
+    }
+
+    public void setLinesArr(ArrayList<InvoiceLine> linesArr) {
+        this.linesArr = linesArr;
+    }
 
     public void setInvoicesArr(ArrayList<InvoiceHeader> invoicesArr) {
         this.invoicesArr = invoicesArr;
@@ -299,6 +319,10 @@ public class SIG_Frame extends javax.swing.JFrame  {
 
     public JLabel getjLabel_InvoiceTotal() {
         return jLabel_InvoiceTotal;
+    }
+
+    public ActionListenerBtns getListenerBtns() {
+        return listenerBtns;
     }
     
   

@@ -11,6 +11,8 @@ import SIG.view.SIG_Frame;
 //import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -48,6 +50,7 @@ public class ActionListenerMenuItems implements ActionListener{
         }
     }
     private void LoadFile() {
+        JOptionPane.showMessageDialog(frame, "Please, select header file!", "Attension", JOptionPane.WARNING_MESSAGE);
         JFileChooser fileChooser=new JFileChooser();
         try{
         int choice= fileChooser.showOpenDialog(frame);
@@ -64,6 +67,7 @@ public class ActionListenerMenuItems implements ActionListener{
                     Headers.add(invHeader);      
             }
             frame.setInvoicesArr(Headers);
+            JOptionPane.showMessageDialog(frame, "Please, select lines file!", "Attension", JOptionPane.WARNING_MESSAGE);
             choice= fileChooser.showOpenDialog(frame);
         if (choice==JFileChooser.APPROVE_OPTION) {
             Path PathOfLineFile=Paths.get(fileChooser.getSelectedFile().getAbsolutePath());
@@ -95,6 +99,49 @@ public class ActionListenerMenuItems implements ActionListener{
     }
     }
     private void SaveFile() {
+        ArrayList<InvoiceHeader> headers=frame.getInvoicesArr();
+        JOptionPane.showMessageDialog(frame, "Please, (select/Create) file to save Invoices Header", "Attension", JOptionPane.WARNING_MESSAGE);
+        JFileChooser fileChooser=new JFileChooser();
+        try{
+        int choice= fileChooser.showSaveDialog(frame);
+        if (choice==JFileChooser.APPROVE_OPTION) {
+            File hFile=fileChooser.getSelectedFile();
+            FileWriter hFileWriter=new FileWriter(hFile);
+            String hStr="";
+            String lStr="";
+            int i=0;
+            int hSize=headers.size();
+            for (InvoiceHeader header:headers) {
+                i++;
+                hStr+=header.toString();
+                if (i!=hSize) {
+                    hStr+="\n";
+                }
+                int j=0;
+                int lSize=header.getLines().size();
+                for(InvoiceLine line :header.getLines()){
+                    j++;
+                    lStr+=line.toString();
+                    if (j==lSize && i==hSize) {
+                        break;
+                    }
+                    lStr+="\n";
+                    
+                }
+            }
+            JOptionPane.showMessageDialog(frame, "Please,(select/Create) file to save Lines Invoice", "Attension", JOptionPane.WARNING_MESSAGE);
+            choice= fileChooser.showSaveDialog(frame);
+            File lFile=fileChooser.getSelectedFile();
+            FileWriter lFileWriter=new FileWriter(lFile);
+            hFileWriter.write(hStr);
+            lFileWriter.write(lStr);
+            hFileWriter.close();
+            lFileWriter.close();
+        }
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(frame, e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
 }

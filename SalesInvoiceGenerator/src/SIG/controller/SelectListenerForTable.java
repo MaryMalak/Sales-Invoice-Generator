@@ -28,17 +28,19 @@ public class SelectListenerForTable implements ListSelectionListener{
     @Override
     public void valueChanged(ListSelectionEvent e) {
         int indexOfSelectedRow=frame.getjTable_Invoice().getSelectedRow();
-        System.out.println(" "+indexOfSelectedRow);
+        if (indexOfSelectedRow != -1) {
+            
         InvoiceHeader selectedRow =frame.getInvoicesArr().get(indexOfSelectedRow);
         ArrayList<InvoiceLine> lines=selectedRow.getLines();
         InvoiceLineTable lineTable=new InvoiceLineTable(lines);
+        frame.setLinesArr(lines);
         frame.getjTable_Items().setModel(lineTable);
         frame.getjTextField_CustomerName().setText(selectedRow.getCustomerName());
         frame.getjLabel_InvoiceNumber().setText(selectedRow.getNumber()+"");
         frame.getjLabel_InvoiceTotal().setText(selectedRow.getTotalInvoice()+"");
         frame.getjTextField_InvoiceDate().setText(SIG_Frame.date.format(selectedRow.getDate()));
         
-        
+        }
        
     }
 

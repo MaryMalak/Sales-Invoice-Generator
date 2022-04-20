@@ -5,6 +5,8 @@
  */
 package SIG.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,6 +19,7 @@ public class InvoiceHeader {
     private Date date;
     private String customerName;
     private ArrayList<InvoiceLine>lines ;
+    private DateFormat d=new SimpleDateFormat("dd-MM-yyyy");
 
     public InvoiceHeader() {
     }
@@ -78,7 +81,7 @@ public class InvoiceHeader {
 
     @Override
     public String toString() {
-        return "InvoiceHeader{" + "number=" + number + ", date=" + date + ", customerName=" + customerName + '}';
+        return  number + ","+ d.format(date)+ "," + customerName   ;
     }
     
     

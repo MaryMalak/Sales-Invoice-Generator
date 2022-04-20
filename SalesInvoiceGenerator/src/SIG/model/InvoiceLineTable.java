@@ -22,6 +22,9 @@ public class InvoiceLineTable extends AbstractTableModel{
     
     @Override
     public int getRowCount() {
+        if (linesArr==null) {
+            return 0;     
+        }
         return linesArr.size() ;
     }
 
