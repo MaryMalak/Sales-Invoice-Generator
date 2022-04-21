@@ -67,6 +67,7 @@ public class ActionListenerMenuItems implements ActionListener{
                     Headers.add(invHeader);      
             }
             frame.setInvoicesArr(Headers);
+            System.out.println("Header file read");
             JOptionPane.showMessageDialog(frame, "Please, select lines file!", "Attension", JOptionPane.WARNING_MESSAGE);
             choice= fileChooser.showOpenDialog(frame);
         if (choice==JFileChooser.APPROVE_OPTION) {
@@ -88,6 +89,7 @@ public class ActionListenerMenuItems implements ActionListener{
             InvoiceHeaderTable headerTable1=new InvoiceHeaderTable(Headers);
             frame.setHeaderTable(headerTable1);
             frame.getjTable_Invoice().setModel(headerTable1);
+            System.out.println("lines file read");
                    
         }
         }
@@ -97,6 +99,7 @@ public class ActionListenerMenuItems implements ActionListener{
             JOptionPane.showMessageDialog(frame, e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
         
     }
+       printInvoices();
     }
     private void SaveFile() {
         ArrayList<InvoiceHeader> headers=frame.getInvoicesArr();
@@ -143,5 +146,11 @@ public class ActionListenerMenuItems implements ActionListener{
             JOptionPane.showMessageDialog(frame, e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+    private void printInvoices() {
+        System.out.println("***************************");
+        for (InvoiceHeader header : frame.getInvoicesArr()) {
+            System.out.println(header);
+        }
+        System.out.println("***************************");
+    }
 }

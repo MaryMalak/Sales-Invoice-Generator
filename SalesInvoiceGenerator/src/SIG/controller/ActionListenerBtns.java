@@ -84,6 +84,7 @@ public class ActionListenerBtns implements ActionListener{
             frame.getjLabel_InvoiceNumber().setText("");
             frame.getjLabel_InvoiceTotal().setText("");
             frame.getjTextField_InvoiceDate().setText("");
+            printInvoices();
             
         }
     }
@@ -106,6 +107,7 @@ public class ActionListenerBtns implements ActionListener{
             frame.getjLabel_InvoiceTotal().setText(h.getTotalInvoice()+"");  
         }
             frame.getjTable_Invoice().setRowSelectionInterval(indexOfSelectedRowHeader, indexOfSelectedRowHeader);
+            printInvoices();
         
     }
 
@@ -131,12 +133,14 @@ public class ActionListenerBtns implements ActionListener{
         frame.getHeaderTable().fireTableDataChanged();
        dialogForHeader.dispose();
        dialogForHeader=null;
+       printInvoices();
     }
 
     private void CancelNewInvoice() {
        dialogForHeader.setVisible(false);
        dialogForHeader.dispose();
        dialogForHeader=null;
+       
     }
 
     private void OkCreatNewLine() {
@@ -175,6 +179,7 @@ public class ActionListenerBtns implements ActionListener{
 
         dialogForLine.dispose();
         dialogForLine=null;
+        printInvoices();
     }
 
 
@@ -182,5 +187,13 @@ public class ActionListenerBtns implements ActionListener{
         dialogForLine.setVisible(false);
         dialogForLine.dispose();
         dialogForLine=null;
+       
 }
+    private void printInvoices() {
+        System.out.println("***************************");
+        for (InvoiceHeader header : frame.getInvoicesArr()) {
+            System.out.println(header);
+        }
+        System.out.println("***************************");
+    }
 }

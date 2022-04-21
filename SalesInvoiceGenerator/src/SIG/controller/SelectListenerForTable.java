@@ -28,6 +28,8 @@ public class SelectListenerForTable implements ListSelectionListener{
     @Override
     public void valueChanged(ListSelectionEvent e) {
         int indexOfSelectedRow=frame.getjTable_Invoice().getSelectedRow();
+        System.out.println("The Invoice you selected is : " + indexOfSelectedRow);
+
         if (indexOfSelectedRow != -1) {
             
         InvoiceHeader selectedRow =frame.getInvoicesArr().get(indexOfSelectedRow);
